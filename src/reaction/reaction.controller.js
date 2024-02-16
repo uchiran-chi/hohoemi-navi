@@ -1,19 +1,19 @@
 const testResponse = [
   {
     reaction_id: 1,
-    reaction_value: 1,
+    reaction_value: "good",
     reaction_timestamp: "xx:xx:xx",
   },
   {
     reaction_id: 2,
-    reaction_value: 3,
+    reaction_value: "very_good",
     reaction_timestamp: "xx:xx:xx",
   },
 ];
 
 const testSingleResponse = {
   reaction_id: 1,
-  reaction_value: 1,
+  reaction_value: "good",
   reaction_timestamp: "xx:xx:xx",
 };
 

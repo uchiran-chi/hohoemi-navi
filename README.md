@@ -1,5 +1,25 @@
 # hohoemi-navi
 
+# 環境構築手順
+
+clone 後にディレクトリを移動して以下のコマンドを実行する
+
+`npm install`
+
+ローカル環境にデータベースがない場合は以下のコマンドで作成する
+
+`psql -U {user_name} -p {password} -f .\db\createDB.sql`
+
+`.env.example` をコピーして 
+
+以下のようなコマンドで `.env.local` ファイルを作成した後、自身のローカルの情報を記載する
+
+`cp .\.env.example .env.local`
+
+以下のコマンドでテーブルを作成する
+
+`npm run migrate`
+
 # API
 
 ## リアクション API

@@ -26,7 +26,7 @@ describe("POST /api/v1/users/{user_id}/reactions", () => {
 describe("GET /api/v1/users/{user_id}/reactions", () => {
   it("should retrn userReactions", async () => {
     const res = await request.get("/api/v1/users/:user_id/reactions");
-    res.body.length.should.equal(3);
+    res.body.length.should.equal(2);
   });
 });
 
