@@ -67,3 +67,6 @@ jspm_packages/
 
 # Optional eslint cache
 .eslintcache
+
+# local env file
+.env.local
