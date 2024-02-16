@@ -1,84 +1,55 @@
 const knex = require("../knex");
-const { validProps, requiredProps } = require("../util/validation");
 
-const validateProps = validProps([
-  "id",
-  "email",
-  "first_name",
-  "last_name",
-  "address",
-  "city",
-  "region",
-  "country",
-  "postal_code",
-]);
-
-const validateRequired = requiredProps(["email", "last_name", "postal_code"]);
-
-const CUSTOMER_TABLE = "customer";
+const REACTION_TABLE = "reaction";
 
 module.exports = {
-  CUSTOMER_TABLE,
+  REACTION_TABLE: REACTION_TABLE,
 
   /**
-   * @param {number} limit - The max number of customers to return.
-   * @return {Promise<Array>} A promise that resolves to an array of customers.
+   * @param {int} userId - The user's id.
+   * @param {timestamp} from - The start of the time range. Defaults to "1900-01-01T00:00:00Z".
+   * @param {timestamp} to - The end of the time range. Defaults to "2100-12-31T23:59:59Z".
+   * @return {Promise<Array>} A promise that resolves to an array of reactions.
    */
-  getAll(limit = 100) {
+  getAll(userId, from = "1900-01-01T00:00:00Z", to = "2100-12-31T23:59:59Z") {
     return knex
       .select({
         id: "id",
-        lastName: "last_name",
-        firstName: "first_name",
-        country: "country",
+        userId: "userId",
+        sendAt: "sendAt",
+        reaction: "reaction",
       })
-      .from(CUSTOMER_TABLE)
-      .limit(limit);
+      .from(REACTION_TABLE)
+      .where("userId", userId)
+      .whereBetween("sendAt", [from, to]);
   },
 
   /**
-   * @param {number} id - The customer's id.
-   * @return {Promise<Object>} A promise that resolves to the customer that matches the id.
+   * @param {number} userId - The user's id.
+   * @param {number} id - The reaction's id.
+   * @return {Promise<Object>} A promise that resolves to the reaction that matches the id.
    */
-  getById(id) {
+  getById(userId, id) {
     return knex
       .select({
         id: "id",
-        lastName: "last_name",
-        firstName: "first_name",
-        email: "email",
-        address: "address",
-        city: "city",
-        region: "region",
-        postalCode: "postal_code",
-        country: "country",
+        userId: "userId",
+        sendAt: "sendAt",
+        reaction: "reaction",
       })
-      .from(CUSTOMER_TABLE)
+      .from(REACTION_TABLE)
       .where({
         id: id,
+        userId: userId,
       })
       .first();
   },
 
   /**
-   * @param {Object} customer - The new customer data to add.
-   * @return {Promise<number>} A promise that resolves to the id of created customer.
+   * @param {Object} reaction - The new reaction data to add.
+   * @return {Promise<number>}  A promise that resolves when the reaction is created.
    */
-  create(customer) {
-    validateRequired(validateProps(customer));
-    return knex(CUSTOMER_TABLE).insert(customer).returning("id");
-  },
-
-  /**
-   * @param {number} id - The unique id of the existing customer.
-   * @param {Object} customer - The customer data to change.
-   * @return {Promise<number>} A promise that resolves to the id of the updated customer.
-   */
-  update(id, customer) {
-    validateProps(customer);
-    return knex(CUSTOMER_TABLE)
-      .where({ id })
-      .update(customer)
-      .then(() => id);
+  create(reaction) {
+    return knex(REACTION_TABLE).insert(reaction);
   },
 };

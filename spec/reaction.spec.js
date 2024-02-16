@@ -11,30 +11,26 @@ beforeEach(() => {
 });
 
 const reaction = {
-  reaction_value: "good",
+  reaction: "good",
 };
 
 describe("POST /api/v1/users/{user_id}/reactions", () => {
   it("should create userReaction", async () => {
-    const res = await request
-      .post("/api/v1/users/:user_id/reactions")
-      .send(reaction);
+    const res = await request.post("/api/v1/users/4/reactions").send(reaction);
     res.should.have.status(201);
   });
 });
 
 describe("GET /api/v1/users/{user_id}/reactions", () => {
   it("should retrn userReactions", async () => {
-    const res = await request.get("/api/v1/users/:user_id/reactions");
+    const res = await request.get("/api/v1/users/1/reactions");
     res.body.length.should.equal(2);
   });
 });
 
 describe("GET /api/v1/users/{user_id}/reactions/{reaction_id}", () => {
   it("should create userReaction", async () => {
-    const res = await request
-      .get("/api/v1/users/:user_id/reactions/:reaction_id")
-      .send(reaction);
-    res.body.reaction_value.should.equal("good");
+    const res = await request.get("/api/v1/users/1/reactions/2");
+    res.body.reaction.should.equal("very_good");
   });
 });

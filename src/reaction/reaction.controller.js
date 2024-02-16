@@ -1,54 +1,27 @@
-const testResponse = [
-  {
-    reaction_id: 1,
-    reaction_value: "good",
-    reaction_timestamp: "xx:xx:xx",
-  },
-  {
-    reaction_id: 2,
-    reaction_value: "very_good",
-    reaction_timestamp: "xx:xx:xx",
-  },
-];
-
-const testSingleResponse = {
-  reaction_id: 1,
-  reaction_value: "good",
-  reaction_timestamp: "xx:xx:xx",
-};
+const reactionModel = require("./reaction.model");
 
 module.exports = {
   async findUserReactions(req, res) {
-    // const plants = await knex.select().from("planttable");
-    // const customers = await customerModel.getAll();
-    res.status(200).json(testResponse);
-    // return testResponse;
+    const reactions = await reactionModel.getAll(
+      req.params.user_id,
+      req.query.from,
+      req.query.to
+    );
+    res.status(200).json(reactions);
   },
 
   async getUserReaction(req, res) {
-    // const plants = await knex.select().from("planttable");
-    // const customers = await customerModel.getAll();
-    res.status(200).json(testSingleResponse);
-    // return testResponse;
+    const reaction = await reactionModel.getById(
+      req.params.user_id,
+      req.params.reaction_id
+    );
+    res.status(200).json(reaction);
   },
 
   async createUserReaction(req, res) {
+    req.body.sendAt = new Date();
+    req.body.userId = parseInt(req.params.user_id);
+    await reactionModel.create(req.body);
     res.status(201).json();
   },
-
-  // {
-  //   reaction_number: 1
-  // }
-
-  //   async create(req) {
-  //     knex(PLANT_TABLE).insert(req.body).returning("id");
-  //   },
-
-  //   async update(req) {
-  //     knex(PLANT_TABLE).where({ id: req.params.id }).update(req.body);
-  //   },
-
-  //   async delete(req) {
-  //     knex(PLANT_TABLE).where({ id: req.params.id }).del();
-  //   },
 };

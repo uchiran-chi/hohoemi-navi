@@ -5,7 +5,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable("reaction", function (table) {
     table.increments("id").primary();
-    table.date("sendAt").notNullable();
+    table.integer("userId").notNullable();
+    table.timestamp("sendAt").notNullable();
     table.string("reaction").notNullable();
   });
 };

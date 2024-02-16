@@ -24,31 +24,3 @@ const setupServer = () => {
 };
 
 module.exports = { setupServer };
-
-// GET /api/v1/users/{user_id}/reactions
-// {
-//   [
-//     {
-//       reaction_id: 1,
-//       reaction_number: 1,
-//       reaction_timestamp: xx:xx:xx
-//     },
-//     {
-//       reaction_id: 2,
-//       reaction_number: 3,
-//       reaction_timestamp: xx:xx:xx
-//     }
-//   ]
-// }
-// GET /api/v1/users/{user_id}/reactions/{reaction_id}
-// {
-//   {
-//     reaction_id: 2
-//     reaction_number: 3,
-//     reaction_timestamp: xx:xx:xx
-//   }
-// }
-// POST /api/v1/users/{user_id}/reactions
-// {
-//   reaction_number: 1
-// }
