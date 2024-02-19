@@ -6,9 +6,10 @@
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
-    "test": "mocha spec",
+    "test": "mocha spec --exit",
     "migrate": "knex migrate:latest",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "rollback": "knex migrate:rollback"
   },
   "author": "",
   "license": "ISC",
