@@ -13,8 +13,6 @@ module.exports = {
    * @return {Promise<Array>} A promise that resolves to an array of reactions.
    */
 
-  // 検索範囲のデフォルト：開始 1900/1/1、終了 2100/12/31
-  // 指定されたユーザーIDおよび時間範囲内のリアクションを取得する
   getAll(user_id, from = "1900-01-01T00:00:00Z", to = "2100-12-31T23:59:59Z") {
     return knex
       .select({
@@ -35,7 +33,6 @@ module.exports = {
    * @return {Promise<Object>} A promise that resolves to the reaction that matches the id.
    */
 
-  // 指定されたユーザーIDとリアクションIDに一致するリアクションを取得する
   getById(user_id, id) {
     return knex
       .select({
@@ -58,7 +55,6 @@ module.exports = {
    * @return {Promise<number>}  A promise that resolves when the reaction is created.
    */
 
-  // リアクションを作成
   // テスト実行時にタイムアウトとなってしまうため、async/awaitを使う形に修正
   async create(reaction) {
     await knex(REACTION_TABLE).insert(reaction);
