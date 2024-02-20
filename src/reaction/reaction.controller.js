@@ -19,8 +19,8 @@ module.exports = {
   },
 
   async createUserReaction(req, res) {
-    req.body.sendAt = new Date();
-    req.body.userId = parseInt(req.params.user_id);
+    req.body.sendat = new Date();
+    req.body.user_id = parseInt(req.params.user_id);
     await reactionModel.create(req.body);
     res.status(201).json();
   },

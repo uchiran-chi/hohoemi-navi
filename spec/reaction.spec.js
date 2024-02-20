@@ -8,6 +8,7 @@ let request;
 
 const reaction = {
   reaction: "good",
+  comment: "お友達と散歩をしたようです",
 };
 
 describe("serverのテスト", () => {

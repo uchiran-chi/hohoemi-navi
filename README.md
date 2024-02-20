@@ -41,14 +41,14 @@ http://localhost:3001/api/v1/users/:user_id/reactions?from=2024-01-15T15:30:00Z&
   [
     {
         "id": 1,
-        "userId": 1,
-        "sendAt": "2024-01-16T06:30:00.000Z",
+        "user_id": 1,
+        "sendat": "2024-01-16T06:30:00.000Z",
         "reaction": "good"
     },
     {
         "id": 2,
-        "userId": 1,
-        "sendAt": "2024-02-20T03:15:00.000Z",
+        "user_id": 1,
+        "sendat": "2024-02-20T03:15:00.000Z",
         "reaction": "very_good"
     },
   ]
@@ -65,8 +65,8 @@ http://localhost:3001/api/v1/users/:user_id/reactions?from=2024-01-15T15:30:00Z&
 {
   {
     "id": 3,
-    "userId": 2,
-    "sendAt": "2024-03-14T01:50:00.000Z",
+    "user_id": 2,
+    "sendat": "2024-03-14T01:50:00.000Z",
     "reaction": "bad"
   }
 }

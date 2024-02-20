@@ -7,7 +7,7 @@ module.exports = {
   // リアクションテーブルに関するデータベース操作を行う。
 
   /**
-   * @param {int} userId - The user's id.
+   * @param {int} user_id - The user's id.
    * @param {timestamp} from - The start of the time range. Defaults to "1900-01-01T00:00:00Z".
    * @param {timestamp} to - The end of the time range. Defaults to "2100-12-31T23:59:59Z".
    * @return {Promise<Array>} A promise that resolves to an array of reactions.
@@ -15,38 +15,40 @@ module.exports = {
 
   // 検索範囲のデフォルト：開始 1900/1/1、終了 2100/12/31
   // 指定されたユーザーIDおよび時間範囲内のリアクションを取得する
-  getAll(userId, from = "1900-01-01T00:00:00Z", to = "2100-12-31T23:59:59Z") {
+  getAll(user_id, from = "1900-01-01T00:00:00Z", to = "2100-12-31T23:59:59Z") {
     return knex
       .select({
         id: "id",
-        userId: "userId",
-        sendAt: "sendAt",
+        user_id: "user_id",
+        sendat: "sendat",
         reaction: "reaction",
+        comment: "comment",
       })
       .from(REACTION_TABLE)
-      .where("userId", userId)
-      .whereBetween("sendAt", [from, to]);
+      .where("user_id", user_id)
+      .whereBetween("sendat", [from, to]);
   },
 
   /**
-   * @param {number} userId - The user's id.
+   * @param {number} user_id - The user's id.
    * @param {number} id - The reaction's id.
    * @return {Promise<Object>} A promise that resolves to the reaction that matches the id.
    */
 
   // 指定されたユーザーIDとリアクションIDに一致するリアクションを取得する
-  getById(userId, id) {
+  getById(user_id, id) {
     return knex
       .select({
         id: "id",
-        userId: "userId",
-        sendAt: "sendAt",
+        user_id: "user_id",
+        sendat: "sendat",
         reaction: "reaction",
+        comment: "comment",
       })
       .from(REACTION_TABLE)
       .where({
         id: id,
-        userId: userId,
+        user_id: user_id,
       })
       .first();
   },

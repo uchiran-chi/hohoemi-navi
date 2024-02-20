@@ -1,1 +1,1 @@
-CREATE DATABASE hohoemi_navi;
+CREATE DATABASE "hohoemiNavi";
