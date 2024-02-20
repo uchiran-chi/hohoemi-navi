@@ -23,22 +23,3 @@ jobs:
           POSTGRES_DB: testDB
         ports:
           - 5432:5432
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install global packages
-        run: npm install -g knex
-
-      - name: Migrate and seed test database
-        run: knex migrate:latest && knex seed:run
-
-      - name: Run Tests
-        run: npm run test
-
-      - name: Rollback test database
-        run: npm run rollback
