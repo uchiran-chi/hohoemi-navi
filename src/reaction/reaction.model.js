@@ -57,6 +57,6 @@ module.exports = {
 
   // テスト実行時にタイムアウトとなってしまうため、async/awaitを使う形に修正
   async create(reaction) {
-    await knex(REACTION_TABLE).insert(reaction);
+    await knex(REACTION_TABLE).insert(reaction).catch(console.error);
   },
 };
