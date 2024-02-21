@@ -52,5 +52,5 @@ jobs:
   
       - name: Push Docker Image to ECR
         run: |
-          IMAGE_NAME=${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
+          IMAGE_NAME=${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
           docker push $IMAGE_NAME        
