@@ -29,14 +29,14 @@ describe("serverのテスト", () => {
     request = chai.request(server);
   });
 
-  describe("POST /api/v1/reaction", () => {
+  describe("POST /api/v1/reactions", () => {
     it("should create userReaction", async () => {
       const reaction = {
         user_id: 2,
         reaction: "good",
         comment: "お友達と散歩をしたようです",
       };
-      const res = await request.post("/api/v1/reaction").send(reaction);
+      const res = await request.post("/api/v1/reactions").send(reaction);
       res.should.have.status(201);
     });
   });
