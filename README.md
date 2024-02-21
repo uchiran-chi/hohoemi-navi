@@ -65,8 +65,6 @@ npm run dev
 
 # API
 
-## リアクション API
-
 ### GET /api/v1/users/{user_id}/reactions?from={timestamp}&to={timestamp}
 
 指定した user_id のリアクション一覧を取得します
