@@ -31,7 +31,7 @@ clone 後にディレクトリを移動して以下のコマンドを実行す�
 リクエストの例は以下のようになります
 
 ```
-http://localhost:3001/api/v1/users/:user_id/reactions?from=2024-01-15T15:30:00Z&to=2024-02-16T5:30:00Z
+http://localhost:80/api/v1/users/:user_id/reactions?from=2024-01-15T15:30:00Z&to=2024-02-16T5:30:00Z
 ```
 
 レスポンスは以下の形になります
