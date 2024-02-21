@@ -20,7 +20,8 @@ module.exports = {
 
   async createUserReaction(req, res) {
     req.body.sendat = new Date();
+    req.body.user_id = parseInt(req.params.user_id);
     await reactionModel.create(req.body);
-    res.status(201).json();
+    res.status(201).json({ message: "Reaction created successfully" });
   },
 };

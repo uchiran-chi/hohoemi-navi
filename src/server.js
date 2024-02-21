@@ -20,7 +20,10 @@ const setupServer = () => {
   );
 
   // リアクションを作成
-  app.post("/api/v1/reactions", reactionController.createUserReaction);
+  app.post(
+    "/api/v1/users/:user_id/reactions",
+    reactionController.createUserReaction
+  );
 
   // リクエストボディに指定された情報をもとにusersテーブルに登録し、idを返す
   app.post("/api/v1/users/", usersController.createUser);
