@@ -45,12 +45,12 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          IMAGE_NAME=${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
+          IMAGE_NAME=${{ secrets.ECR_REPOSITORY }}:latest
           pwd
           ls
           docker build -f ./Dockerfile --force-rm -t $IMAGE_NAME . 
   
       - name: Push Docker Image to ECR
         run: |
-          IMAGE_NAME=${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
+          IMAGE_NAME=${{ secrets.ECR_REPOSITORY }}:latest
           docker push $IMAGE_NAME        
