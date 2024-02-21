@@ -24,7 +24,7 @@ module.exports = {
       };
 
       const insertedUser = await usersModel.createUser(newUser);
-      res.status(201).json({ id: insertedUser[0] });
+      res.status(201).json(insertedUser[0]);
     } catch {
       res.status(500).json({ error: "Internal Server Error" });
     }
