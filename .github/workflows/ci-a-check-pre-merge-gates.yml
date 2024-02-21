@@ -2,6 +2,9 @@ name: "[CI/A]"
 
 on:
   workflow_dispatch:
+  push:
+    branches: 
+      - feat/docker-image
   pull_request:
     types:
       - opened
