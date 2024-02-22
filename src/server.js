@@ -1,10 +1,13 @@
 const express = require("express");
 const reactionController = require("./reaction/reaction.controller");
 const usersController = require("./users/users.controller");
+var errorhandler = require('errorhandler');
 
 const setupServer = () => {
   const app = express();
   app.use(express.json());
+  app.use(errorhandler());
+  app.use('/public', express.static('src/public'));
 
   // 検索範囲のデフォルト：開始 1900/1/1、終了 2100/12/31
   // 指定されたユーザーIDおよび時間範囲内のリアクションを取得する
