@@ -70,3 +70,4 @@ jspm_packages/
 
 # local env file
 .env.local
+.env
